@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `<input type="file" (change)="onFileChange($event)">`
 })
 export class AppComponent {
-  title = 'user-upload-ui';
+  constructor(private userService: UserService) {}
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    this.userService.uploadFile(file).subscribe(
+      res => console.log('Upload successful'),
+      err => console.log('Upload failed')
+    );
+  }
 }
