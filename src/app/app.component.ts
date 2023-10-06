@@ -15,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
         <mat-card-content class="content">
           <p>Upload a CSV file with user data. The format should be:</p>
           <code>first name, last name, email, phone</code>
+          <p><strong>Note:</strong> The first line is expected to be a header and will be skipped.</p>
           <p>Your data will be stored securely in our database.</p>
           <button mat-raised-button color="primary" (click)="fileInput.click()">Upload File</button>
           <input #fileInput type="file" style="display: none" (change)="onFileChange($event)">
@@ -48,16 +49,16 @@ export class AppComponent {
   constructor(
     private userService: UserService,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   onFileChange(event: any) {
     if (event.target.files.length === 0) {
       this.showSnackBar("No file selected");
       return;
     }
-  
+
     this.uploading = true;
-    
+
     const file = event.target.files[0];
     this.userService.uploadFile(file).subscribe({
       next: () => {
