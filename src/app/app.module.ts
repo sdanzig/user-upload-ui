@@ -5,6 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { StoreModule } from '@ngrx/store';
     BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
