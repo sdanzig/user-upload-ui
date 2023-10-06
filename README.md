@@ -2,7 +2,7 @@
 
 ## Description
 
-This Angular application serves as a front-end UI for uploading CSV files containing user data to a REST API. The server-side application runs on `http://localhost:8080`. After the upload, a snackbar notification will display the upload status.
+This Angular application serves as a front-end UI for uploading CSV files containing user data to a REST API, running by default on port 4200, and due to CORS protection, it must run on that port. The server-side application runs on `http://localhost:8080`. After the upload, a snackbar notification will display the upload status.
 
 ## Requirements
 
