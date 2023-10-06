@@ -1,27 +1,44 @@
-# UserUploadUi
+# User Upload UI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+## Description
 
-## Development server
+This Angular application serves as a front-end UI for uploading CSV files containing user data to a REST API. The server-side application runs on `http://localhost:8080`. After the upload, a snackbar notification will display the upload status.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Requirements
 
-## Code scaffolding
+- Angular 16.2.0
+- @angular/material 16.2.7
+- @ngrx/store 16.3.0
+- Other dependencies are listed in `package.json`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Running the Application
 
-## Build
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Install dependencies:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    ```bash
+    npm install
+    ```
 
-## Running unit tests
+4. Run the application:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    ```bash
+    ng serve
+    ```
 
-## Running end-to-end tests
+## User Interface
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The UI consists of a single page with a button for uploading CSV files. The uploaded file is sent to a server running at `http://localhost:8080`.
 
-## Further help
+## Snackbar Notifications
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Success**: If the upload is successful, a notification will appear indicating so.
+- **Failure**: If the upload fails, the error message will be displayed in the notification.
+
+## Running Tests
+
+Run the unit tests with the following command:
+
+```bash
+ng test
