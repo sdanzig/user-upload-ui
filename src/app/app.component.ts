@@ -1,47 +1,13 @@
 import { Component } from '@angular/core';
 import { UserService } from './user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
-  template: `
-    <div class="container">
-      <mat-card class="upload-card">
-        <mat-card-header>
-          <mat-card-title>
-            <h1>CSV User Data Upload</h1>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="content">
-          <p>Upload a CSV file with user data. The format should be:</p>
-          <code>first name, last name, email, phone</code>
-          <p><strong>Note:</strong> The first line is expected to be a header and will be skipped.</p>
-          <p>Your data will be stored securely in our database.</p>
-          <button mat-raised-button color="primary" (click)="fileInput.click()">Upload File</button>
-          <input #fileInput type="file" style="display: none" (change)="onFileChange($event)">
-          <mat-progress-bar *ngIf="uploading" mode="indeterminate"></mat-progress-bar>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  `,
-  styles: [`
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f5f5f5;
-    }
-    .upload-card {
-      text-align: center;
-      max-width: 500px;
-    }
-    .content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  `]
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   uploading = false;
@@ -66,17 +32,24 @@ export class AppComponent {
         event.target.value = null;
         this.showSnackBar("Upload successful");
       },
-      error: () => {
+      error: (error: HttpErrorResponse) => {
         this.uploading = false;
-        this.showSnackBar("Upload failed");
+        let errMsg = 'Upload failed';
+        if (error.error && error.error.message) {
+          errMsg = error.error.message; // Get message from the server
+        }
+        this.showSnackBar(errMsg, true); // Pass a new argument to indicate failure
         event.target.value = null;
       }
     });
   }
 
-  showSnackBar(message: string) {
+  showSnackBar(message: string, isError: boolean = false) {
+    const panelClass = isError ? ['snack-bar-error'] : [];
+
     this.snackBar.open(message, 'Close', {
-      duration: 3000
+      duration: 3000,
+      panelClass
     });
   }
 }
