@@ -10,9 +10,9 @@ export class AppComponent {
 
   onFileChange(event: any) {
     const file = event.target.files[0];
-    this.userService.uploadFile(file).subscribe(
-      res => console.log('Upload successful'),
-      err => console.log('Upload failed')
-    );
+    this.userService.uploadFile(file).subscribe({
+      next: () => console.log('Upload successful'),
+      error: () => console.log('Upload failed')
+    });
   }
 }

@@ -10,6 +10,6 @@ export class UserService {
   uploadFile(file: File) {
     const formData = new FormData();
     formData.append('file', file, file.name);
-    return this.http.post('/api/users', formData);
+    return this.http.post('http://localhost:8080/api/users', formData);
   }
 }
